@@ -4,24 +4,6 @@ var bodyParser      = require("body-parser");
 var mongoose        = require("mongoose");
 var methodOverride  = require("method-override");
 
-// Firebase
-
-var firebase = require("firebase-admin");
-
-var serviceAccount = require("./config/mealtimeprod-firebase.json");
-
-firebase.initializeApp({
-  credential: firebase.credential.cert(serviceAccount),
-  databaseURL: process.env.mealtimeDatabaseURL
-});
-
-var data = firebase.database().ref('/ff84cdcc-7349-4fbb-b11b-795588e03226/lists/Default/items');
-
-data.once('value').then(function(snap) {
-	console.log(snap.val());
-});
-
-
 
 var db = require("./config/db");
 
