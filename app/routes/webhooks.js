@@ -22,16 +22,20 @@ module.exports = function(router) {
 			var itemsList = data.child('items');
 
 			var item = {
+				name: '',
 				searchValue:''
 			}
 
+			// for (var i = 0; i < addList.length; i++) {
 			addList.forEach(function(element) {
+				console.log(element);
+				item.name = element;
 				item.searchValue = element.toLowerCase();
 
-				itemsList.orderByChild("searchValue").startAt(item.searchValue).endAt(item.searchValue).once('value', function(dataSnapshot) {
+				return itemsList.orderByChild("searchValue").startAt(item.searchValue).endAt(item.searchValue).once('value', function(dataSnapshot) {
 					if (dataSnapshot.val() === null) {
-						console.log('Create new item and then add to list.');
-
+						console.log('Adding ' + item.name);
+						return itemsList.push().set(item);
 						// CREATE NEW ITEM
 		              // //Create New Item
 		              // items.$add(item).then(function(ref) {         
