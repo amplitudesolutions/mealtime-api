@@ -69,35 +69,18 @@ module.exports = function(router) {
     
     router.route('/webhook')
         .post(function(req, res) { 
-        	var addList = req.body.result.parameters['Add-list'];
+        	if (req.body.result.metadata.intentName === 'Add-to-list-intent') {
 
-			// var categoryList = data.child('categories');
-
-			
-
-		    // categoryList.orderByChild('default').startAt(true).endAt(true).once('value', function(snap) {
-		    // 	console.log(snap.val());
-		    //     // snap.forEach(function(snapData) {
-		    //       item.category = snap.key;
-		    //     // });
-
-		        // addList.forEach(function(element) {
-					addNewItem(addList).then(function(data) {
-						
-
-						res.json({
-						  	"speech": "Alright, " + data + " have been added",
-						  	"source": "mealtime-api",
-							"displayText": "Alright, " + data + " have been added"
-			        	});
-					});
-				// });
-		    // });
-
-			
-			// data.once('value').then(function(snap) {
-			// 	console.log(snap.val());
-			// });
+	        	var addList = req.body.result.parameters['Add-list'];
+				addNewItem(addList).then(function(data) {
+					res.json({
+					  	"speech": "Alright, " + data + " have been added",
+					  	"source": "mealtime-api",
+						"displayText": "Alright, " + data + " have been added"
+		        	});
+				});
+				
+			}
         })
     ;
 
