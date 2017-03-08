@@ -2,7 +2,7 @@
 
 var firebase = require("firebase-admin");
 
-var serviceAccount = require("../../config/mealtimeprod-firebase.json");
+var serviceAccount = require("../../config/mealtimeprod-firebase.json") || { projectId: process.env.FBPROJECTID, clientEmail: process.env.FBEMAIL, privateKey: process.env.FBKEY }; 
 
 firebase.initializeApp({
   	credential: firebase.credential.cert(serviceAccount),
