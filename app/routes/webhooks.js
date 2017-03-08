@@ -33,16 +33,16 @@ function addNewItem(elements) {
 
 	itemsList.orderByChild("searchValue").startAt(item.searchValue).endAt(item.searchValue).once('value', function(dataSnapshot) {
 		if (dataSnapshot.val() === null) {
-			console.log('Adding ' + item.name);
+			// console.log('Adding ' + item.name);
 			item.category = '-JxxMBHu93IyJOu365hA';
-			item = itemsList.push(item);
-			var list = data.child('lists/Default/items/' + item.key);
+			var addedItem = itemsList.push(item);
+			var list = data.child('lists/Default/items/' + addedItem.key);
 
 			// var categoryItem = data.child('categories/' + '-JxxMBHu93IyJOu365hA/' + 'items');
 			// categoryItem.set({})
     		
-    		list.set({category: item.val().category, gotit: false, quantity: 1}, function(subRes) {
-    			deferred.resolve(item.val().name);
+    		list.set({category: item.category, gotit: false, quantity: 1}, function(subRes) {
+    			deferred.resolve(item.name);
     		});
 
 			// CREATE NEW ITEM
