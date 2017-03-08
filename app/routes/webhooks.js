@@ -65,7 +65,7 @@ module.exports = function(router) {
 
 
         	// console.log(req.body.result.parameters);
-        	res.send({
+        	res.json({
         		"fulfillment": {
 				  "speech": "Sure, I have added " + item.name,
 				  "source": "mealtime-api",
