@@ -1,19 +1,19 @@
 var express         = require("express");
 var app             = express();
 var bodyParser      = require("body-parser");
-var mongoose        = require("mongoose");
+// var mongoose        = require("mongoose");
 var methodOverride  = require("method-override");
 
 
-var db = require("./config/db");
+// var db = require("./config/db");
 
 var port = process.env.PORT || 443;
 
-mongoose.Promise = require('q').Promise;
-mongoose.connect(db, function(err, res) {
-	if (err)
-		console.log(err);
-});
+// mongoose.Promise = require('q').Promise;
+// mongoose.connect(db, function(err, res) {
+// 	if (err)
+// 		console.log(err);
+// });
 
 app.use(bodyParser.json());
 app.use(bodyParser.json({type: "application/vnd.api+json"}));
